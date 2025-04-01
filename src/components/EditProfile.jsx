@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
 import { addUser } from '../utils/userSlice';
 import UserCard from './UserCard';
+import axios from 'axios';
 
 const EditProfile = ({user}) => {
     const [firstName,setFirstName] = useState(user.firstName)
@@ -22,13 +23,13 @@ const EditProfile = ({user}) => {
             const res = await axios.patch(BASE_URL+"/profile/edit",{firstName,lastName,photoUrl,age,gender,about},{withCredentials:true})
             dispatch(addUser(res?.data?.data))
         } catch (error) {
-            console.log(error.response.data)
+            console.log(error)
             navigate("/")
         }
     }
   return (
     <div className='flex justify-center my-10'>
-        <div className='flex justify-center mx-10'>
+        <div className='flex justify-center flex-row mx-10'>
           <label className="form-control w-full max-w-xs my-2">
             <div className="label">
               <span className="label-text">First Name</span>
@@ -90,6 +91,9 @@ const EditProfile = ({user}) => {
             />
           </label>
         </div>
+        <div className="card-actions justify-end">
+            <button onClick={saveProfile} className="btn btn-primary">Save Profile</button>
+          </div>
         <UserCard user={{firstName,lastName,photoUrl,age,gender,about}}/>
     </div>
   )
