@@ -19,6 +19,7 @@ const Feed = () => {
     if(feed) return;
     try {
       const res = await axios.get(BASE_URL+"/feed",{withCredentials:true})
+      console.log(res)
       dispatch(addFeed(res?.data?.data))
     } catch (error) {
       console.log(error);
@@ -26,6 +27,8 @@ const Feed = () => {
     }
   }
 
+  if(!feed) return
+  if(feed.length<=0) return <h1>No New Users</h1>
   return (
     <>
     {feed && (<div className='flex justify-center my-10'>
