@@ -28,8 +28,8 @@ const EditProfile = ({user}) => {
         }
     }
   return (
-    <div className='flex justify-center my-10'>
-        <div className='flex justify-center flex-row mx-10'>
+    <div className='flex justify-center my-10 mb-20'>
+        <div className='flex justify-center flex-col mx-10'>
           <label className="form-control w-full max-w-xs my-2">
             <div className="label">
               <span className="label-text">First Name</span>
@@ -90,10 +90,10 @@ const EditProfile = ({user}) => {
               onChange={(e)=>setAbout(e.target.value)}
             />
           </label>
-        </div>
-        <div className="card-actions justify-end">
-            <button onClick={saveProfile} className="btn btn-primary">Save Profile</button>
+          <div className="card-actions justify-center">
+            <button onClick={saveProfile} className="btn  btn-primary">Save Profile</button>
           </div>
+        </div>
         <UserCard user={{firstName,lastName,photoUrl,age,gender,about}}/>
     </div>
   )

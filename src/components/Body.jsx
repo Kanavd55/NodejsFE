@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BASE_URL } from "../utils/constants";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -13,24 +14,20 @@ const Body = () => {
 
   const fetchUser = async () => {
     try {
-      if (userData) {
-        return;
-      }
-      const res = await axios.post(BASE_URL + "/profile/view", {
+      const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
       dispatch(addUser(res.data));
     } catch (error) {
-      if (error.status === 401) {
-        navigate("/");
-      }
+      navigate("/login");
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchUser;
-  }, []);
+    fetchUser()
+  }, [])
+
   return (
     <div>
       <Navbar />

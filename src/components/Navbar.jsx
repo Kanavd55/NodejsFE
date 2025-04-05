@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost text-xl">Connect Now</Link>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
@@ -48,6 +48,9 @@ const Navbar = () => {
             >
               <Link to="/profile"  className="justify-between">
                   Profile
+              </Link>
+              <Link to="/"  className="justify-between">
+                  Feed
               </Link>
               <Link to="/connections"  className="justify-between">
                   Connections

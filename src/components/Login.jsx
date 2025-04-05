@@ -30,8 +30,8 @@ const Login = () => {
   const handleSignUp = async () => {
     try {
       const res = await axios.post(BASE_URL+"/signup",{firstName,lastName,emailId,password},{withCredentials:true})
-      dispatch(addUser(res.data))
-      return navigate("/profile")
+      setError("Login Now")
+      setIsLoginForm(true)
     } catch (error) {
       console.log(error)
       setError(error?.response?.data || "Something went wrong");
@@ -95,7 +95,7 @@ const Login = () => {
           <div className="card-actions justify-center m-2">
             <button className="btn" onClick={isLoginForm ? handleLogin : handleSignUp}>{isLoginForm ? "Login" : "SignUp"}</button>
           </div>
-          <p onClick={()=>setIsLoginForm((prev)=>!prev)}>{isLoginForm ? "New User? Click to Sign Up" : "Alredy registered? Click to Login"}</p>
+          <p className="text-center cursor-pointer" onClick={()=>setIsLoginForm((prev)=>!prev)}>{isLoginForm ? "New User? Click to Sign Up" : "Alredy registered? Click to Login"}</p>
           {error && <p>{error}</p>}
         </div>
       </div>
